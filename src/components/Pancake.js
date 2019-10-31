@@ -1,4 +1,5 @@
 import React from "react";
+// import { start } from "repl";
 
 class Pancake extends React.Component {
   constructor(props) {
@@ -11,8 +12,13 @@ class Pancake extends React.Component {
   }
 
   // TODO: create a componentDidMount() which will start the interval to count how long the pancake has been cooking
-
+  componentDidMount() {
+    this.startInterval();
+  }
   // TODO: create a componentWillUnmount() which will clear the interval
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
   updateCounter = () => {
     this.setState({
@@ -58,7 +64,9 @@ class Pancake extends React.Component {
 
   render() {
     const { timeCooked, flippedAt } = this.state;
-    const firstSide = Boolean(this.state.flippedAt === null && typeof flippedAt !== "number");
+    const firstSide = Boolean(
+      this.state.flippedAt === null && typeof flippedAt !== "number"
+    );
     const status = this.getPancakeStatus();
 
     return (
